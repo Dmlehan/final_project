@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.oniessoftware.controller.Loginformcontroller">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="1550.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/raw-spices-vintage-tray-separate-small-bowl-spoon-with-text-space-top-view-mock-up_78502-361.jpg" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <AnchorPane layoutX="69.0" layoutY="47.0" opacity="0.59" prefHeight="698.0" prefWidth="599.0" style="-fx-background-color: #ecf0f1;" styleClass="edge-button" stylesheets="@../style/style.css">
+         <children>
+            <Label layoutX="64.0" layoutY="54.0" text="WELCOME BACK !">
+               <font>
+                  <Font name="System Bold" size="46.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtUserName" alignment="CENTER" layoutX="121.0" layoutY="274.0" onAction="#txtUserNameOnAction" prefHeight="44.0" prefWidth="382.0" promptText="username">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="txtPassword" alignment="CENTER" layoutX="125.0" layoutY="359.0" onAction="#txtPaswordOnAction" prefHeight="31.0" prefWidth="382.0" promptText="password">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton fx:id="btnLogin" layoutX="116.0" layoutY="533.0" onAction="#btnLoginOnAction" prefHeight="48.0" prefWidth="360.0" style="-fx-background-color: #34495e;" styleClass="edgez-button" stylesheets="@../style/style.css" text="LOG IN" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="55.0" layoutY="278.0" opacity="0.53" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons8-customer-100.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="45.0" layoutX="51.0" layoutY="361.0" opacity="0.53" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons8-forgot-password-96.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="238.0" layoutY="484.0" text="Forgot Password?" textFill="#686363" />
+            <ImageView fitHeight="119.0" fitWidth="344.0" layoutX="109.0" layoutY="114.0">
+               <image>
+                  <Image url="@../img/IMG-20230323-WA0012-removebg-preview%20(1).png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
