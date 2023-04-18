@@ -10,11 +10,9 @@ import lombok.*;
 
 public class ItemDTO {
     private String item_Code;
-    private Double getPrice;
-    private Double salePrice;
-    private Double profit;
-    private String store;
+    private Integer store;
     private String description;
+    private Double unit_price;
 
 
 }

@@ -4,8 +4,10 @@ import lk.ijse.oniessoftware.dto.EmployeeDTO;
 import lk.ijse.oniessoftware.dto.OrdersDTO;
 import lk.ijse.oniessoftware.util.CrudUtil;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class OrdersModel {
 
@@ -25,5 +27,33 @@ public class OrdersModel {
     public static boolean delete(String orderId) throws SQLException {
         String sql = "DELETE FROM orders WHERE orders_Id = ?";
         return CrudUtil.execute(sql, orderId);
+    }
+
+    public static boolean add(String oId, String cusId, LocalDate now) throws SQLException {
+        String sql = "INSERT INTO orders(orders_Id,dates,cust_Id) VALUES(?,?,?)";
+
+        return CrudUtil.execute(sql,oId,now,cusId);
+    }
+
+    public static String generateNextOrderId() throws SQLException {
+
+        String sql = "SELECT orders_Id FROM orders ORDER BY orders_Id DESC LIMIT 1";
+
+        ResultSet resultSet =CrudUtil.execute(sql);
+        if(resultSet.next()) {
+            return splitOrderId(resultSet.getString(1));
+        }
+        return splitOrderId(null);
+    }
+
+    public static String splitOrderId(String currentOrderId) {
+        if(currentOrderId != null) {
+            String[] strings = currentOrderId.split("O0");
+            int id = Integer.parseInt(strings[1]);
+            id++;
+
+            return "O0"+id;
+        }
+        return "O001";
     }
 }

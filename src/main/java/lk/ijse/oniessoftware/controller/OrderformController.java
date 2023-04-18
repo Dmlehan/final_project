@@ -22,11 +22,13 @@ import lk.ijse.oniessoftware.dto.OrdersDTO;
 import lk.ijse.oniessoftware.model.CustomerModel;
 import lk.ijse.oniessoftware.model.ItemsModel;
 import lk.ijse.oniessoftware.model.OrdersModel;
+import lk.ijse.oniessoftware.model.PlaceOrderModel;
 import lk.ijse.oniessoftware.model.tm.PlaceOrderTM;
 
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.*;
 
 public class OrderformController implements Initializable {
@@ -117,6 +119,21 @@ public class OrderformController implements Initializable {
         setCustIds();
         setItemId();
         setCellValueFactory();
+        setOrderId();
+        setOrderDate();
+    }
+
+    private void setOrderDate() {
+        txtODate.setText(String.valueOf(LocalDate.now()));
+    }
+
+    private void setOrderId() {
+        try {
+            String nextId = OrdersModel.generateNextOrderId();
+            txtOrderId.setText(nextId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
@@ -246,8 +263,9 @@ public class OrderformController implements Initializable {
         try {
             item = ItemsModel.serchById(itemId);
             txtItemName.setText(item.getDescription());
-            txtQtyOnHand.setText(item.getStore());
-            txtUnitPrice.setText(String.valueOf(item.getGetPrice()));
+            txtQtyOnHand.setText(String.valueOf(item.getStore()));
+            txtUnitPrice.setText(String.valueOf(item.getUnit_price()));
+            txtQty.requestFocus();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -263,7 +281,7 @@ public class OrderformController implements Initializable {
         for (int i = 0; i < tblOrder.getItems().size(); i++) {
             PlaceOrderTM tm = obList.get(i);
 
-            CartDTO cartDTO = new CartDTO(tm. tm.getQty(), tm.getUnitPrice());
+            CartDTO cartDTO = new CartDTO(tm.getItem_id(), tm.getQty(),tm.getUnit_price());
             cartDTOList.add(cartDTO);
         }
 
