@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import lk.ijse.oniessoftware.db.DBConnection;
 import lk.ijse.oniessoftware.dto.CartDTO;
 import lk.ijse.oniessoftware.dto.CustomerDTO;
 import lk.ijse.oniessoftware.dto.ItemDTO;
@@ -24,7 +25,13 @@ import lk.ijse.oniessoftware.model.ItemsModel;
 import lk.ijse.oniessoftware.model.OrdersModel;
 import lk.ijse.oniessoftware.model.PlaceOrderModel;
 import lk.ijse.oniessoftware.model.tm.PlaceOrderTM;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -139,11 +146,10 @@ public class OrderformController implements Initializable {
     private void setCellValueFactory() {
         colOderId.setCellValueFactory(new PropertyValueFactory<>("item_id"));
         colItemName.setCellValueFactory(new PropertyValueFactory<>("item_name"));
-        colTotalPrice.setCellValueFactory(new PropertyValueFactory<>("unit_price"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
         colTotalPrice.setCellValueFactory(new PropertyValueFactory<>("total_price"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
-
+        colODate.setCellValueFactory(new PropertyValueFactory<>("unit_price"));
 
     }
 
@@ -299,4 +305,38 @@ public class OrderformController implements Initializable {
 
 
     }
+
+    public void reportOnAction(ActionEvent actionEvent) {
+        Thread t1 = new Thread(() -> {
+
+            HashMap<String,Object> hm=new HashMap<>();
+            hm.put("orderId",txtOrderId.getText());
+
+
+
+            try {
+                JasperDesign design = JRXmlLoader.load(new File("D:\\Final OOP project\\New folder\\final_project\\src\\main\\java\\lk\\ijse\\oniessoftware\\report\\order.jrxml"));
+                JasperReport compileReport = JasperCompileManager.compileReport(design);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, hm, DBConnection.getInstance().getConnection());
+//            JasperPrintManager.printReport(jasperPrint, true);
+
+                JasperViewer.viewReport(jasperPrint, false);
+            } catch (JRException | SQLException e) {
+                e.printStackTrace();
+            }
+        });
+
+        t1.start();
+
+       /* try {
+            JasperDesign design = JRXmlLoader.load(new File("D:\\Final OOP project\\New folder\\final_project\\src\\main\\java\\lk\\ijse\\oniessoftware\\report\\order.jrxml"));
+            JasperReport compileReport = JasperCompileManager.compileReport(design);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, null, DBConnection.getInstance().getConnection());
+//            JasperPrintManager.printReport(jasperPrint, true);
+            JasperViewer.viewReport(jasperPrint,false);
+        } catch (JRException | SQLException e) {
+            e.printStackTrace();*/
+
+    }
 }
+

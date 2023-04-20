@@ -48,12 +48,12 @@
             </Text>
          </children>
       </Pane>
-      <TableView fx:id="customerTable" layoutX="140.0" layoutY="387.0" prefHeight="238.0" prefWidth="655.0" stylesheets="@../style/style.css">
+      <TableView fx:id="tblCustomer" layoutX="140.0" layoutY="387.0" prefHeight="238.0" prefWidth="972.0" stylesheets="@../style/style.css">
         <columns>
           <TableColumn fx:id="colCustId" prefWidth="138.0" text="Customer ID" />
-          <TableColumn fx:id="colCustName" minWidth="0.0" prefWidth="192.0" text="Name" />
-            <TableColumn fx:id="colCustNumber" prefWidth="168.0" text="Number" />
-            <TableColumn fx:id="colUserId" prefWidth="159.0" text="UserId" />
+          <TableColumn fx:id="colCustName" minWidth="0.0" prefWidth="336.0" text="Name" />
+            <TableColumn fx:id="colCustNumber" prefWidth="240.0" text="Number" />
+            <TableColumn fx:id="colUserId" prefWidth="257.0" text="UserId" />
         </columns>
       </TableView>
       <JFXButton fx:id="btnSearch" layoutX="964.0" layoutY="38.0" onAction="#btnSearchOnAction" text="Search">
@@ -75,7 +75,7 @@
          </graphic></JFXButton>
       <JFXButton fx:id="btnCustomerUpdate" buttonType="RAISED" layoutX="721.0" layoutY="689.0" onAction="#btnCustomerUpdateOnAction" prefHeight="32.0" prefWidth="120.0" style="-fx-background-color: #96DA8E; -fx-background-radius: 20;" styleClass="btnSide" stylesheets="@../style/style.css" text="Update">
          <graphic>
-            <ImageView fx:id="btnCustomerUpdate" fitHeight="26.0" fitWidth="26.0">
+            <ImageView fitHeight="26.0" fitWidth="26.0">
                <image>
                   <Image url="@../img/icons8-update-48.png" />
                </image>
@@ -91,9 +91,9 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Text fx:id="lblCustomer" fontSmoothingType="LCD" layoutX="497.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textField" text="Customer">
+      <Text fx:id="lblCustomer" fontSmoothingType="LCD" layoutX="437.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textField" text="Customer">
          <font>
-            <Font name="System Bold" size="30.0" />
+            <Font name="Bernard MT Condensed" size="64.0" />
          </font>
       </Text>
       <JFXTextField fx:id="txtCustomerSearch" layoutX="721.0" layoutY="38.0" prefHeight="31.0" prefWidth="243.0" promptText=" search Customer" />

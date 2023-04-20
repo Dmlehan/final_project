@@ -16,12 +16,12 @@
 <AnchorPane fx:id="supplierAnchor" prefHeight="800.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.oniessoftware.controller.SupplierformController">
    <children>
       <Label layoutX="564.0" layoutY="130.0" prefHeight="57.0" prefWidth="59.0" />
-      <TableView fx:id="tableSupplier" layoutX="240.0" layoutY="418.0" prefHeight="238.0" prefWidth="301.0" stylesheets="@../style/style.css">
+      <TableView fx:id="tableSupplier" layoutX="240.0" layoutY="418.0" prefHeight="238.0" prefWidth="741.0" stylesheets="@../style/style.css">
         <columns>
-          <TableColumn prefWidth="75.0" text="Supply Id" />
-          <TableColumn prefWidth="75.0" text="Name" />
-            <TableColumn prefWidth="75.0" text="Contact" />
-            <TableColumn prefWidth="75.0" text="Types" />
+          <TableColumn fx:id="colSupplierId" prefWidth="75.0" text="Supply Id" />
+          <TableColumn fx:id="colName" prefWidth="299.0" text="Name" />
+            <TableColumn fx:id="colContact" prefWidth="212.0" text="Contact" />
+            <TableColumn fx:id="colTypes" prefWidth="154.0" text="Types" />
         </columns>
       </TableView>
       <Pane layoutX="81.0" layoutY="142.0" prefHeight="230.0" prefWidth="953.0" style="-fx-background-color: #ffff; -fx-background-radius: 20; -fx-border-radius: 20;" styleClass="textPane" stylesheets="@../style/style.css">
@@ -93,9 +93,9 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Text fontSmoothingType="LCD" layoutX="507.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textField" text="Supplier">
+      <Text fontSmoothingType="LCD" layoutX="492.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textField" text="Supplier">
          <font>
-            <Font name="System Bold" size="30.0" />
+            <Font name="Bernard MT Condensed" size="64.0" />
          </font>
       </Text>
       <JFXTextField fx:id="txtSupplierSearch" layoutX="731.0" layoutY="48.0" prefHeight="31.0" prefWidth="243.0" promptText=" search Supplier" text="Search Supplier" />

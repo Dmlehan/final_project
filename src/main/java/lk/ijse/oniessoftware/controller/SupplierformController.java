@@ -109,9 +109,9 @@ public class SupplierformController implements Initializable {
     }
 
     private void setCellValue() {
-      colSupplierId.setCellValueFactory(new PropertyValueFactory<>("sup_id"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colContact.setCellValueFactory(new PropertyValueFactory<>("tp"));
+      colSupplierId.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("supplierName"));
+        colContact.setCellValueFactory(new PropertyValueFactory<>("contactNumber"));
         colTypes.setCellValueFactory(new PropertyValueFactory<>("types"));
 
     }

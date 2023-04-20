@@ -7,17 +7,24 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
+import lk.ijse.oniessoftware.dto.CustomerDTO;
+import lk.ijse.oniessoftware.model.CustomerModel;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeFormController implements Initializable {
 
 
+    public Label lblCustomerCount;
     @FXML
     private Label lblTime;
 
@@ -42,6 +49,8 @@ public class HomeFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle){
         initClock();
     }
+
+
 
 }
 

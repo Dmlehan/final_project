@@ -17,12 +17,26 @@ import java.sql.SQLException;
             return CrudUtil.execute(sql, hCode,types,Quantity);
         }
         public static boolean update(HarvestDTO harvest) throws SQLException {
-            String sql = "UPDATE harvest  types = ?, Qty = ?, tp = ? WHERE h_code = ?";
+            String sql = "UPDATE harvest  types = ?, Qty = ?, WHERE h_code = ?";
             return CrudUtil.execute(sql, harvest.getHarvestId(), harvest.getHarvestType(),harvest.getHarvestQuantity());
         }
         public static boolean delete(String empId) throws SQLException {
             String sql = "DELETE FROM harvest WHERE h_code = ?";
             return CrudUtil.execute(sql, empId);
+        }
+
+        public static HarvestDTO search(String hCode) throws SQLException {
+            String sql = "SELECT * FROM harvest WHERE h_code = ?";
+            ResultSet resultSet = CrudUtil.execute(sql,hCode );
+
+            if (resultSet.next()) {
+                String code= resultSet.getString(1);
+                String types = resultSet.getString(2);
+                Double Qty = resultSet.getDouble(3);
+
+                return new HarvestDTO(code,types,Qty);
+            }
+            return null;
         }
     }
 

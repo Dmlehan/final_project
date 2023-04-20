@@ -79,6 +79,7 @@ public class HarvestformController implements Initializable {
         setCellValue();
         populateHarvestTable();
         searchFilter();
+
     }
     private void searchFilter() {
         FilteredList<HarvestDTO> filteredData = new FilteredList<>(data, b -> true);
@@ -104,9 +105,9 @@ public class HarvestformController implements Initializable {
         tableHarvest.setItems(sortedData);
     }
     private void setCellValue() {
-        colHarvestCode.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
-        colHarvestType.setCellValueFactory(new PropertyValueFactory<>("types"));
-        colQuantity.setCellValueFactory(new PropertyValueFactory<>("Qty"));
+        colHarvestCode.setCellValueFactory(new PropertyValueFactory<>("harvestId"));
+        colHarvestType.setCellValueFactory(new PropertyValueFactory<>("harvestType"));
+        colQuantity.setCellValueFactory(new PropertyValueFactory<>("harvestQuantity"));
 
     }
     private void populateHarvestTable() {
@@ -138,7 +139,6 @@ public class HarvestformController implements Initializable {
                 }
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
-
             }
         }
 
@@ -163,7 +163,20 @@ public class HarvestformController implements Initializable {
 
         @FXML
         void btnHarvestSearchOnAction(ActionEvent event) {
+           String hCode = txtHarvestSearch.getText();
+            try {
+                HarvestDTO harvest = HarvestModel.search(hCode);
+                if (harvest != null) {
+                    txtHarvestCode.setText(harvest.getHarvestId());
+                    txtHarvestType.setText(harvest.getHarvestType());
+                    txtHarvestQuantity.setText(String.valueOf(harvest.getHarvestQuantity()));
 
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "no customer found :(").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, "oops! something went wrong :(").show();
+            }
 
         }
 

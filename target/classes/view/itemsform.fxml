@@ -15,24 +15,23 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.oniessoftware.controller.ItemsformController">
    <children>
-      <TableView fx:id="tableItem" layoutX="311.0" layoutY="400.0" prefHeight="255.0" prefWidth="498.0" stylesheets="@../style/style.css">
+      <TableView fx:id="tableItem" layoutX="286.0" layoutY="400.0" prefHeight="255.0" prefWidth="882.0" stylesheets="@../style/style.css">
         <columns>
-          <TableColumn prefWidth="99.0" text="Item code" />
-          <TableColumn prefWidth="81.0" text="Get Price" />
-            <TableColumn prefWidth="112.0" text="Sale Price" />
-            <TableColumn minWidth="0.0" prefWidth="83.0" text="Profit" />
-            <TableColumn minWidth="0.0" prefWidth="0.0" text="C5" />
-            <TableColumn prefWidth="120.0" text="Type" />
+          <TableColumn fx:id="colItemCode" prefWidth="99.0" text="Item Code" />
+          <TableColumn fx:id="colUnitPrice" prefWidth="316.0" text="Unit Price" />
+            <TableColumn fx:id="colProfit" minWidth="0.0" prefWidth="105.0" text="Profit" />
+            <TableColumn fx:id="colType" prefWidth="172.0" text="Type" />
+            <TableColumn fx:id="colStore" prefWidth="190.0" text="Store" />
         </columns>
       </TableView>
-      <Pane layoutX="29.0" layoutY="156.0" prefHeight="221.0" prefWidth="1208.0" style="-fx-background-color: #ffff; -fx-background-radius: 20; -fx-border-radius: 20;" styleClass="textPane" stylesheets="@../style/style.css">
+      <Pane layoutX="44.0" layoutY="158.0" prefHeight="221.0" prefWidth="1177.0" style="-fx-background-color: #ffff; -fx-background-radius: 20; -fx-border-radius: 20;" styleClass="textPane" stylesheets="@../style/style.css">
          <children>
-            <Label layoutX="481.0" layoutY="143.0" prefHeight="53.0" prefWidth="152.0" text=" Type">
+            <Label layoutX="462.0" layoutY="143.0" prefHeight="53.0" prefWidth="152.0" text=" Type">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="481.0" layoutY="63.0" prefHeight="53.0" prefWidth="152.0" text="Get Price">
+            <Label layoutX="471.0" layoutY="63.0" prefHeight="53.0" prefWidth="152.0" text="Unit price">
                <font>
                   <Font size="24.0" />
                </font>
@@ -47,17 +46,17 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="txtItemCode" layoutX="217.0" layoutY="74.0" />
-            <TextField fx:id="txtItemProfit" layoutX="217.0" layoutY="154.0" />
-            <TextField fx:id="txtItemGetPrice" layoutX="640.0" layoutY="74.0" />
-            <TextField fx:id="txtItemType" layoutX="640.0" layoutY="154.0" />
+            <TextField fx:id="txtItemCode" layoutX="200.0" layoutY="74.0" />
+            <TextField fx:id="txtItemProfit" layoutX="200.0" layoutY="154.0" />
+            <TextField fx:id="txtItemUnitPrice" layoutX="641.0" layoutY="74.0" />
+            <TextField fx:id="txtItemType" layoutX="641.0" layoutY="154.0" />
             <Text fill="#003c65" layoutX="46.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Detatils" wrappingWidth="207.99999877810478">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Text>
-            <TextField fx:id="txtItemSalePrice" layoutX="998.0" layoutY="74.0" />
-            <Label layoutX="872.0" layoutY="63.0" prefHeight="53.0" prefWidth="120.0" text="Sale Price">
+            <TextField fx:id="txtItemStore" layoutX="976.0" layoutY="74.0" />
+            <Label layoutX="877.0" layoutY="63.0" prefHeight="53.0" prefWidth="99.0" text="Store">
                <font>
                   <Font size="24.0" />
                </font>
@@ -100,11 +99,11 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Text fontSmoothingType="LCD" layoutX="517.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textField" text="Item">
+      <Text fontSmoothingType="LCD" layoutX="514.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textField" text="Item" wrappingWidth="151.9999930858612">
          <font>
-            <Font name="System Bold" size="30.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Text>
-      <JFXTextField fx:id="txtIItemsSearch" layoutX="741.0" layoutY="58.0" prefHeight="31.0" prefWidth="243.0" promptText=" search Item" />
+      <JFXTextField fx:id="txtItemsSearch" layoutX="741.0" layoutY="58.0" prefHeight="31.0" prefWidth="243.0" promptText=" search Item" />
    </children>
 </AnchorPane>

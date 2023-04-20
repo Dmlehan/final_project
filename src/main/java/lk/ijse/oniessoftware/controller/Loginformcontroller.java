@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.oniessoftware.model.Logingmodel;
+import lk.ijse.oniessoftware.util.Regex;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -31,20 +32,25 @@ public class Loginformcontroller {
     public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
         String name = txtUserName.getText();
         String password = txtPassword.getText();
-        try {
-            boolean isUserVerified = Logingmodel.useVerified(name,password);
-            if (isUserVerified) {
-                System.out.println("Verified");
+        if(Regex.validateUsername(txtUserName.getText())&&Regex.validatePassword(txtPassword.getText())){
+            try {
+                boolean isUserVerified = Logingmodel.useVerified(name,password);
+                if (isUserVerified) {
+                    System.out.println("Verified");
 //                new Alert(Alert.AlertType.CONFIRMATION, "User Verified!!!").show();
-                pane.getChildren().clear();
-                pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/dashboard.fxml")));
-            } else {
-                new Alert(Alert.AlertType.WARNING, "User Not Verified!!!").show();
+                    pane.getChildren().clear();
+                    pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/dashboard.fxml")));
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "User Not Verified!!!").show();
+                }
+            }catch (SQLException e){
+                new Alert(Alert.AlertType.ERROR,"Oops something wrong!!!").show();
+                e.printStackTrace();
             }
-        }catch (SQLException e){
-            new Alert(Alert.AlertType.ERROR,"Oops something wrong!!!").show();
-            e.printStackTrace();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Invalid Input !").show();
         }
+
 
 
     }

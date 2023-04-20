@@ -41,6 +41,8 @@ public class DashboardController implements Initializable {
 
     @FXML
     private JFXButton btnLogout;
+    @FXML
+    private JFXButton btnDeliver;
 
     @FXML
     private AnchorPane pane;
@@ -89,7 +91,7 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
-    void btnDeleiverOnAction(ActionEvent event) throws IOException{
+    void btnDeliverOnAction(ActionEvent event) throws IOException{
         pane.getChildren().clear();
         pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/Deliverform.fxml")));
     }
@@ -99,7 +101,6 @@ public class DashboardController implements Initializable {
         Parent loginParent = FXMLLoader.load(getClass().getResource("/view/loginform.fxml"));
         Scene loginScene = new Scene(loginParent);
         Stage loginStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-      //  loginStage.setTitle();
         loginStage.setResizable(true);
         loginStage.setScene(loginScene);
         //loginStage.setMaximized(true);

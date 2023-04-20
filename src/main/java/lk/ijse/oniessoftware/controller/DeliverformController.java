@@ -19,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import lk.ijse.oniessoftware.dto.DeliverDTO;
 import lk.ijse.oniessoftware.model.DeliverModel;
+import lk.ijse.oniessoftware.model.tm.DeliverTM;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -36,7 +37,7 @@ public class DeliverformController implements Initializable {
     }
 
     @FXML
-    private TableView<DeliverDTO> tableDeliver;
+    private TableView<DeliverTM> tableDeliver;
 
     @FXML
     private TableColumn<?, ?> colDeliverId;
@@ -92,7 +93,7 @@ public class DeliverformController implements Initializable {
     @FXML
     private JFXButton btnDeliverDelete;
 
-    ObservableList<DeliverDTO> data = FXCollections.observableArrayList();
+    ObservableList<DeliverTM> data = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setCellValue();
@@ -101,17 +102,17 @@ public class DeliverformController implements Initializable {
 
     }
     private void searchFilter() {
-        FilteredList<DeliverDTO> filteredData = new FilteredList<>(data, b -> true);
+        FilteredList<DeliverTM> filteredData = new FilteredList<>(data, b -> true);
         txtDeliverSearch.textProperty().addListener((observable, oldValue, newValue) ->{
-            filteredData.setPredicate(DeliverDTO -> {
+            filteredData.setPredicate(DeliverTM -> {
                 if (newValue.isEmpty() || newValue.isBlank() || newValue == null){
                     return true;
                 }
                 String searchKeyword = newValue.toLowerCase();
 
-                if (DeliverDTO.getOrderId().toLowerCase().contains(searchKeyword)){
+                if (DeliverTM.getOrderId().toLowerCase().contains(searchKeyword)){
                     return true;
-                }else if(DeliverDTO.getDeliverId().toLowerCase().contains(searchKeyword)){
+                }else if(DeliverTM.getDeliverId().toLowerCase().contains(searchKeyword)){
                     return true;
                 }else
                     return false;
@@ -119,17 +120,17 @@ public class DeliverformController implements Initializable {
             });
         });
 
-        SortedList<DeliverDTO> sortedData = new SortedList<>(filteredData);
+        SortedList<DeliverTM> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tableDeliver.comparatorProperty());
         tableDeliver.setItems(sortedData);
     }
     private void setCellValue() {
-        colDeliverId.setCellValueFactory(new PropertyValueFactory<>("deliver_Id"));
-        colPrice.setCellValueFactory(new PropertyValueFactory<>("price_of_Km"));
+        colDeliverId.setCellValueFactory(new PropertyValueFactory<>("deliverId"));
+        colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colVehicle.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colOrderId.setCellValueFactory(new PropertyValueFactory<>("orderId"));
-        colEmployeeId.setCellValueFactory(new PropertyValueFactory<>("empId"));
+        colEmployeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
     }
 
 
@@ -138,7 +139,7 @@ public class DeliverformController implements Initializable {
             ResultSet rs = DeliverModel.getAll();
             data.clear();
             while (rs.next()){
-                data.add(new DeliverDTO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6)));
+                data.add(new DeliverTM(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5),rs.getString(6)));
             }
             if (data != null){
                 tableDeliver.setItems(data);
@@ -172,7 +173,7 @@ public class DeliverformController implements Initializable {
 
 
 
-        var deliver = new DeliverDTO(deliverId,employeeId,orderId,date,vehicle,price);
+        var deliver = new DeliverDTO(deliverId,employeeId,orderId,date,vehicle,String.valueOf(price));
 
         try {
             boolean isUpdated = DeliverModel.update(deliver);
@@ -207,6 +208,8 @@ public class DeliverformController implements Initializable {
 
     @FXML
     void btnDeliverSearchOnAction(ActionEvent event) {
+
+
 
     }
 

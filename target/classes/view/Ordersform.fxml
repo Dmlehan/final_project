@@ -16,7 +16,7 @@
 
 <AnchorPane fx:id="oderAnchor" opacity="0.95" prefHeight="800.0" prefWidth="1266.0" style="-fx-background-color: #d2dae2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.oniessoftware.controller.OrderformController">
    <children>
-      <TableView fx:id="tblOrder" layoutX="48.0" layoutY="465.0" prefHeight="247.0" prefWidth="1184.0" stylesheets="@../style/style.css">
+      <TableView fx:id="tblOrder" layoutX="48.0" layoutY="465.0" prefHeight="247.0" prefWidth="1171.0" stylesheets="@../style/style.css">
          <columns>
             <TableColumn fx:id="colOderId" prefWidth="216.0" text="Item ID" />
             <TableColumn fx:id="colItemName" prefWidth="502.0" text="Item name" />
@@ -66,14 +66,14 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="38.0" layoutY="96.0" prefHeight="53.0" prefWidth="152.0" text="Oder Id">
+            <Label layoutX="38.0" layoutY="96.0" prefHeight="53.0" prefWidth="152.0" text="Order Id">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <TextField fx:id="txtOrderId" layoutX="150.0" layoutY="113.0" prefHeight="26.0" prefWidth="145.0" />
             <TextField fx:id="txtODate" layoutX="967.0" layoutY="17.0" />
-            <Text fill="#003c65" layoutX="46.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oder Detatils" wrappingWidth="207.99999877810478">
+            <Text fill="#003c65" layoutX="46.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Detatils" wrappingWidth="207.99999877810478">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -103,19 +103,20 @@
             </Label>
             <TextField fx:id="txtQtyOnHand" layoutX="858.0" layoutY="214.0" prefHeight="26.0" prefWidth="106.0" />
             <ComboBox fx:id="cmbCustId" layoutX="517.0" layoutY="108.0" onAction="#cmbCUstIdOnAction" prefHeight="37.0" prefWidth="176.0" />
-            <Label layoutX="370.0" layoutY="277.0" prefHeight="53.0" prefWidth="46.0" text="Qty">
+            <Label layoutX="724.0" layoutY="267.0" prefHeight="53.0" prefWidth="46.0" text="Qty">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="txtQty" layoutX="510.0" layoutY="288.0" prefHeight="31.0" prefWidth="94.0" />
+            <TextField fx:id="txtQty" layoutX="864.0" layoutY="278.0" prefHeight="31.0" prefWidth="94.0" />
             <JFXButton buttonType="RAISED" layoutX="1061.0" layoutY="283.0" onAction="#btnAddtoCartOnACtion" prefHeight="41.0" prefWidth="135.0" ripplerFill="#ebdcdc" style="-fx-background-color: #007BFF; -fx-background-radius: 20;" styleClass="btnSide" stylesheets="@../style/style.css" text="Add to cart" />
-            <Label layoutX="713.0" layoutY="277.0" prefHeight="53.0" prefWidth="145.0" text="Unit Price">
+            <Label layoutX="373.0" layoutY="264.0" prefHeight="53.0" prefWidth="145.0" text="Unit Price">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="txtUnitPrice" layoutX="858.0" layoutY="291.0" prefHeight="26.0" prefWidth="106.0" />
+            <TextField fx:id="txtUnitPrice" layoutX="518.0" layoutY="278.0" prefHeight="26.0" prefWidth="106.0" />
+            <JFXButton layoutX="705.0" layoutY="17.0" onAction="#reportOnAction" style="-fx-background-color: lightblue; -fx-background-radius: 10px;" text="report" />
          </children>
       </Pane>
       <JFXButton fx:id="btnOrderSearch" layoutX="1098.0" layoutY="48.0" onAction="#btnOrderSearchOnAction" styleClass="linear-ccc" text="Search">
@@ -127,9 +128,9 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Text fontSmoothingType="LCD" layoutX="507.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textField" text="Order">
+      <Text fontSmoothingType="LCD" layoutX="514.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textField" text="Order">
          <font>
-            <Font name="System Bold" size="30.0" />
+            <Font name="Bernard MT Condensed" size="64.0" />
          </font>
       </Text>
    </children>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -9,24 +11,29 @@
    <children>
       <Pane layoutX="-7.0" prefHeight="102.0" prefWidth="1274.0">
          <children>
-            <Label layoutX="411.0" layoutY="30.0" prefHeight="54.0" prefWidth="134.0" text="Dash Board" />
+            <Label layoutX="303.0" layoutY="14.0" prefHeight="82.0" prefWidth="454.0" text="Dash Board">
+               <font>
+                  <Font name="System Bold" size="74.0" />
+               </font></Label>
          </children>
       </Pane>
-      <Pane layoutX="24.0" layoutY="200.0" prefHeight="560.0" prefWidth="320.0" />
-      <Label layoutX="499.0" layoutY="308.0" prefHeight="224.0" prefWidth="237.0" style="-fx-background-color: lightblue;" styleClass="edgez-button" stylesheets="@../style/style.css" text=" " />
-      <Label layoutX="344.0" layoutY="115.0" prefHeight="68.0" prefWidth="122.0" style="-fx-background-color: purple;" text=" " />
-      <Label layoutX="838.0" layoutY="147.0" prefHeight="68.0" prefWidth="122.0" style="-fx-background-color: purple;" text=" " />
-      <Label layoutX="736.0" layoutY="113.0" prefHeight="68.0" prefWidth="122.0" style="-fx-background-color: purple;" text=" " />
-      <Label layoutX="542.0" layoutY="115.0" prefHeight="68.0" prefWidth="122.0" style="-fx-background-color: purple;" text=" " />
-      <Label fx:id="lblTime" layoutX="574.0" layoutY="346.0" prefHeight="54.0" prefWidth="140.0" text="09:04">
+      <Label layoutX="794.0" layoutY="34.0" prefHeight="182.0" prefWidth="310.0" style="-fx-background-color: lightblue;" styleClass="edgez-button" stylesheets="@../style/style.css" text=" " />
+      <Label fx:id="lblTime" layoutX="908.0" layoutY="51.0" prefHeight="54.0" prefWidth="140.0" text="09:04">
          <font>
             <Font size="31.0" />
          </font>
       </Label>
-      <Label fx:id="lblDate" layoutX="538.0" layoutY="412.0" prefHeight="68.0" prefWidth="160.0" text="2023.04.07">
+      <Label fx:id="lblDate" layoutX="898.0" layoutY="125.0" prefHeight="68.0" prefWidth="160.0" text="2023.04.07">
          <font>
             <Font size="31.0" />
          </font>
       </Label>
+      <ImageView fitHeight="68.0" fitWidth="207.0" layoutX="144.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="421.0" fitWidth="543.0" layoutX="656.0" layoutY="288.0">
+         <image>
+            <Image url="@../img/Farmer-rafiki.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblCustomerCount" layoutX="171.0" layoutY="227.0" prefHeight="68.0" prefWidth="153.0" />
    </children>
 </AnchorPane>

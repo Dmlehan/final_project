@@ -12,9 +12,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import lk.ijse.oniessoftware.model.EmployeeModel;
 import lk.ijse.oniessoftware.dto.EmployeeDTO;
+
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -36,19 +39,20 @@ public class EmployeeformController implements Initializable {
     private JFXTextField txtAEmSearch;
 
     @FXML
-    private JFXTextField txtAEmId;
+    private TextField txtEmployeePay;
 
     @FXML
-    private JFXTextField txtAEmName;
+    private TextField txtEmployeetNumber;
 
     @FXML
-    private JFXTextField txtAEmNic;
+    private TextField txtEmployeeName;
 
     @FXML
-    private JFXTextField txtAEmTele;
+    private TextField txtEmployeeNic;
 
     @FXML
-    private JFXTextField txtEmPH;
+    private TextField txtEmployeeId;
+
 
     @FXML
     private TableView<EmployeeDTO> tblEmployee;
@@ -129,11 +133,11 @@ public class EmployeeformController implements Initializable {
     }
     @FXML
     void btnAddOnAction(ActionEvent event) {
-        String empId = txtAEmId.getText();
-        String empName = txtAEmName.getText();
-        String empNic = txtAEmNic.getText();
-        Double salary = Double.parseDouble(txtEmPH.getText());
-        String contact = txtAEmTele.getText();
+        String empId = txtEmployeeId.getText();
+        String empName =txtEmployeeName.getText();
+        String empNic = txtEmployeeNic.getText();
+        Double salary = Double.parseDouble(txtEmployeePay.getText());
+        String contact = txtEmployeetNumber.getText();
 
         try {
             boolean isSaved = EmployeeModel.save(empId,empName,empNic,salary,contact);
@@ -150,11 +154,11 @@ public class EmployeeformController implements Initializable {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String empId = txtAEmId.getText();
-        String empName = txtAEmName.getText();
-        String empNic = txtAEmNic.getText();
-        Double salary = Double.parseDouble(txtEmPH.getText());
-        String contact = txtAEmTele.getText();
+        String empId = txtEmployeeId.getText();
+        String empName =txtEmployeeName.getText();
+        String empNic = txtEmployeeNic.getText();
+        Double salary = Double.parseDouble(txtEmployeePay.getText());
+        String contact = txtEmployeetNumber.getText();
 
         var employee = new EmployeeDTO(empId, empName, empNic, salary, contact);
 
@@ -171,7 +175,7 @@ public class EmployeeformController implements Initializable {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        String empId = txtAEmId.getText();
+        String empId = txtEmployeeId.getText();
         try {
             boolean isDeleted = EmployeeModel.delete(empId);
             if (isDeleted){
@@ -189,5 +193,27 @@ public class EmployeeformController implements Initializable {
 
 
     public void btnSearchOnAction(ActionEvent actionEvent) {
+        String empId = txtAEmSearch.getText();
+        try {
+            EmployeeDTO employee = EmployeeModel.search(empId);
+            if (employee != null) {
+                txtEmployeeId.setText(employee.getEmployeeId());
+                txtEmployeeNic.setText(employee.getNic());
+                txtEmployeetNumber.setText(employee.getContact());
+                txtEmployeeName.setText(employee.getName());
+                txtEmployeePay.setText(String.valueOf(employee.getPayment_hour()));
+
+            } else {
+                new Alert(Alert.AlertType.WARNING, "no employee found :(").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "oops! something went wrong :(").show();
+        }
+    }
+
+    public void tblEmployeeOnMouseCLicke(MouseEvent mouseEvent) {
+        EmployeeDTO selectedItem = tblEmployee.getSelectionModel().getSelectedItem();
+        if(selectedItem==null)return;
+        txtEmployeeId.setText(selectedItem.getEmployeeId());
     }
 }

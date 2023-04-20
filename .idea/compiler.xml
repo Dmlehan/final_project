@@ -10,8 +10,5 @@
         <module name="oniesSoftware" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="oniesSoftware" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

@@ -101,7 +101,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnDeleiver" layoutY="637.0" onAction="#btnDeleiverOnAction" prefHeight="61.0" prefWidth="252.0" text="Deliver" textFill="#1a1919">
+            <JFXButton fx:id="btnDeliver" layoutY="637.0" onAction="#btnDeliverOnAction" prefHeight="61.0" prefWidth="252.0" text="Deliver" textFill="#1a1919">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>

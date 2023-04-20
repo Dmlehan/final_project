@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class DeliverModel {
         public static ResultSet getAll() throws SQLException {
-            String query = "SELECT * FROM deliver";
+            String query = "SELECT deliver_id,emp_Id,orders_Id,vehicle,price_of_km,date from deliver";
             ResultSet rs = CrudUtil.execute(query);
             return rs;
         }

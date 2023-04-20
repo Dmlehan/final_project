@@ -13,6 +13,7 @@ public class ItemDTO {
     private Integer store;
     private String description;
     private Double unit_price;
+    private Double profit;
 
 
 }

@@ -14,7 +14,7 @@ public class DeliverDTO {
   private  String orderId;
   private  String vehicle;
   private  String date;
-  private  Double price;
+  private  String price;
 
 
 }

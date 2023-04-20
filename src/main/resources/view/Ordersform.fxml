@@ -16,7 +16,7 @@
 
 <AnchorPane fx:id="oderAnchor" opacity="0.95" prefHeight="800.0" prefWidth="1266.0" style="-fx-background-color: #d2dae2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.oniessoftware.controller.OrderformController">
    <children>
-      <TableView fx:id="tblOrder" layoutX="48.0" layoutY="465.0" prefHeight="247.0" prefWidth="1184.0" stylesheets="@../style/style.css">
+      <TableView fx:id="tblOrder" layoutX="48.0" layoutY="465.0" prefHeight="247.0" prefWidth="1171.0" stylesheets="@../style/style.css">
          <columns>
             <TableColumn fx:id="colOderId" prefWidth="216.0" text="Item ID" />
             <TableColumn fx:id="colItemName" prefWidth="502.0" text="Item name" />
@@ -66,14 +66,14 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="38.0" layoutY="96.0" prefHeight="53.0" prefWidth="152.0" text="Oder Id">
+            <Label layoutX="38.0" layoutY="96.0" prefHeight="53.0" prefWidth="152.0" text="Order Id">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <TextField fx:id="txtOrderId" layoutX="150.0" layoutY="113.0" prefHeight="26.0" prefWidth="145.0" />
             <TextField fx:id="txtODate" layoutX="967.0" layoutY="17.0" />
-            <Text fill="#003c65" layoutX="46.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oder Detatils" wrappingWidth="207.99999877810478">
+            <Text fill="#003c65" layoutX="46.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Detatils" wrappingWidth="207.99999877810478">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -116,6 +116,7 @@
                </font>
             </Label>
             <TextField fx:id="txtUnitPrice" layoutX="518.0" layoutY="278.0" prefHeight="26.0" prefWidth="106.0" />
+            <JFXButton layoutX="705.0" layoutY="17.0" onAction="#reportOnAction" style="-fx-background-color: lightblue; -fx-background-radius: 10px;" text="report" />
          </children>
       </Pane>
       <JFXButton fx:id="btnOrderSearch" layoutX="1098.0" layoutY="48.0" onAction="#btnOrderSearchOnAction" styleClass="linear-ccc" text="Search">
@@ -127,9 +128,9 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Text fontSmoothingType="LCD" layoutX="507.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textField" text="Order">
+      <Text fontSmoothingType="LCD" layoutX="514.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textField" text="Order">
          <font>
-            <Font name="System Bold" size="30.0" />
+            <Font name="Bernard MT Condensed" size="64.0" />
          </font>
       </Text>
    </children>

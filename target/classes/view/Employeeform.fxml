@@ -15,7 +15,7 @@
 
 <AnchorPane fx:id="EmployeeAnchor" opacity="0.95" prefHeight="800.0" prefWidth="1266.0" style="-fx-background-color: #d2dae2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.oniessoftware.controller.EmployeeformController">
    <children>
-      <TableView fx:id="tblEmployee" layoutX="163.0" layoutY="378.0" prefHeight="312.0" prefWidth="486.0" stylesheets="@../style/style.css">
+      <TableView fx:id="tblEmployee" layoutX="163.0" layoutY="378.0" onMousePressed="#tblEmployeeOnMouseCLicke" prefHeight="312.0" prefWidth="486.0" stylesheets="@../style/style.css">
         <columns>
           <TableColumn fx:id="colEmployeeId" prefWidth="98.0" text="Employee_Id" />
           <TableColumn fx:id="colName" prefWidth="78.0" text="Name" />
@@ -74,7 +74,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="txtEmployeePay" layoutX="254.0" layoutY="74.0" />
+            <TextField fx:id="txtEmployeePay" layoutX="971.0" layoutY="74.0" />
             <TextField fx:id="txtEmployeetNumber" layoutX="254.0" layoutY="154.0" />
             <TextField fx:id="txtEmployeeName" layoutX="666.0" layoutY="74.0" />
             <TextField fx:id="txtEmployeeNic" layoutX="666.0" layoutY="154.0" />
@@ -88,7 +88,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="txtEmployeeId1" layoutX="963.0" layoutY="74.0" />
+            <TextField fx:id="txtEmployeeId" layoutX="254.0" layoutY="74.0" />
          </children>
       </Pane>
       <JFXButton fx:id="btnSearch" layoutX="1098.0" layoutY="48.0" onAction="#btnSearchOnAction" styleClass="linear-ccc" text="Search">
