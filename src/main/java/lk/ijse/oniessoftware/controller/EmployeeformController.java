@@ -8,17 +8,22 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import lk.ijse.oniessoftware.model.EmployeeModel;
 import lk.ijse.oniessoftware.dto.EmployeeDTO;
+import lk.ijse.oniessoftware.util.Regex;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,7 +39,13 @@ public class EmployeeformController implements Initializable {
         props.setProperty("password", "1234");
     }
 
+
+
     public JFXButton btnDelete;
+    public JFXButton btnEmployeeClear;
+
+    @FXML
+    private JFXButton btnAttendence;
     @FXML
     private JFXTextField txtAEmSearch;
 
@@ -42,7 +53,7 @@ public class EmployeeformController implements Initializable {
     private TextField txtEmployeePay;
 
     @FXML
-    private TextField txtEmployeetNumber;
+    private TextField txtEmployeeNumber;
 
     @FXML
     private TextField txtEmployeeName;
@@ -137,16 +148,19 @@ public class EmployeeformController implements Initializable {
         String empName =txtEmployeeName.getText();
         String empNic = txtEmployeeNic.getText();
         Double salary = Double.parseDouble(txtEmployeePay.getText());
-        String contact = txtEmployeetNumber.getText();
+        String contact = txtEmployeeNumber.getText();
+        if (Regex.validateEmployeeCID(empId) && Regex.validateName(empName)&& Regex.validateNIC(empNic)&&Regex.validateMobile(contact)) {
+            try {
+                boolean isSaved = EmployeeModel.save(empId, empName, empNic, salary, contact);
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Employee saved!!!").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
 
-        try {
-            boolean isSaved = EmployeeModel.save(empId,empName,empNic,salary,contact);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Employee saved!!!").show();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
-
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Invalid Input").show();
         }
     }
 
@@ -158,9 +172,10 @@ public class EmployeeformController implements Initializable {
         String empName =txtEmployeeName.getText();
         String empNic = txtEmployeeNic.getText();
         Double salary = Double.parseDouble(txtEmployeePay.getText());
-        String contact = txtEmployeetNumber.getText();
+        String contact = txtEmployeeNumber.getText();
 
-        var employee = new EmployeeDTO(empId, empName, empNic, salary, contact);
+        if (Regex.validateEmployeeCID(empId) && Regex.validateName(empName)&& Regex.validateNIC(empNic)&&Regex.validateMobile(contact)) {
+            var employee = new EmployeeDTO(empId, empName, empNic, salary, contact);
 
         try {
             boolean isUpdated = EmployeeModel.update(employee);
@@ -171,9 +186,13 @@ public class EmployeeformController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "oops! something happened!").show();
             e.printStackTrace();
         }
+       }else {
+            new Alert(Alert.AlertType.ERROR, "Invalid Input").show();
+        }
     }
 
-    @FXML
+
+        @FXML
     void btnDeleteOnAction(ActionEvent event) {
         String empId = txtEmployeeId.getText();
         try {
@@ -199,7 +218,7 @@ public class EmployeeformController implements Initializable {
             if (employee != null) {
                 txtEmployeeId.setText(employee.getEmployeeId());
                 txtEmployeeNic.setText(employee.getNic());
-                txtEmployeetNumber.setText(employee.getContact());
+                txtEmployeeNumber.setText(employee.getContact());
                 txtEmployeeName.setText(employee.getName());
                 txtEmployeePay.setText(String.valueOf(employee.getPayment_hour()));
 
@@ -215,5 +234,29 @@ public class EmployeeformController implements Initializable {
         EmployeeDTO selectedItem = tblEmployee.getSelectionModel().getSelectedItem();
         if(selectedItem==null)return;
         txtEmployeeId.setText(selectedItem.getEmployeeId());
+        txtEmployeeName.setText(selectedItem.getName());
+        txtEmployeeNumber.setText(selectedItem.getContact());
+        txtEmployeePay.setText(String.valueOf(selectedItem.getPayment_hour()));
+        txtEmployeeNic.setText(selectedItem.getNic());
+    }
+
+    public void btnAttendenceOnAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Loginformcontroller.class.getResource("/view/view/Attendenceform.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("");
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void btnEmployeeClearOnAction(ActionEvent event) {
+
+        txtEmployeeId.setText(null);
+        txtEmployeeName.setText(null);
+        txtEmployeeNic.setText(null);
+        txtEmployeeNumber.setText(null);
+        txtEmployeePay.setText(null);
     }
 }

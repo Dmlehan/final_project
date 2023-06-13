@@ -1,10 +1,4 @@
-package lk.ijse.oniessoftware.util;/*
- * Copyright (c) 2023, All right reserved.
- * Author: Nadun Kawishika
- * Project Name: RohanaRenting
- * Date and Time: 3/31/23, 10:32 AM
- *
- */
+package lk.ijse.oniessoftware.util;
 
 public class Regex {
     private static final String NIC_REGEX_1 = "^[1-9]\\d{11}$";
@@ -16,17 +10,25 @@ public class Regex {
     public static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@gmail\\.com$";
     private static final String MOBILE_REGEX = "^\\+?\\d{10}$";
     private static final String USERNAME_REGEX = "^[A-Za-z0-9]{3,}$";
-    private static final String PASSWORD_REGEX = "[aA-zZ0-9]{8,20}$";
+    private static final String PASSWORD_REGEX = "[aA-zZ0-9]{1,20}$";
     private static final String EID_REGEX = "^[Ee][0-9]{4}$";
     private static final String VEHICLE_ID_REGEX = "^[a-zA-Zz]{2,3}-[0-9]{4}$";
     private static final String TEXT_ONLY = "^[a-zA-Zz]{2,}$";
     public static final String NUMBER_ONLY = "^[1-9]\\d*$";
     private static final String Tool_ID_REGEX = "^[Tt][0-9]{4}$";
-    private static final String CUSTOMER_ID_REGEX = "^[Cc][0-9]{4}$";
+    private static final String CUSTOMER_ID_REGEX = "^[C][0-9]{3}$";
+    private static final String EMPLOYEE_ID_REGEX = "^[E][0-9]{3}$";
+    private static final String SUPPLIER_ID_REGEX = "^[S][0-9]{3}$";
+    private static final String ORDER_ID_REGEX = "^[O][0-9]{3}$";
+    private static final String HARVEST_ID_REGEX = "^[H][0-9]{3}$";
+    private static final String USER_ID_REGEX = "^[U][0-9]{3}$";
+    private static final String ITEM_ID_REGEX = "^[I][0-9]{3}$";
+    private static final String DELIVER_ID_REGEX = "^[D][0-9]{3}$";
+    private static final String ATTENDENCE_ID_REGEX = "^[A][0-9]{3}$";
     private static final String NUMBERS_DECIMAL = "^[+]?[0-9]*\\.?[0-9]+$";
     private static final String ZIP_REGEX = "[0-9]{5}$";
     private static final String VEHICLE_RENT_ID = "^RV.[aA-zZ0-9]{7}$";
-    private static final String TOOL_RENT_ID = "^RT.[aA-zZ0-9]{7}$";
+
 
 
     public static boolean validateNIC(String nic) {
@@ -53,6 +55,14 @@ public class Regex {
     public static boolean validateNumberOnly(String number) {return number.matches(NUMBER_ONLY);}
     public static boolean validateToolId(String toolId){return toolId.matches(Tool_ID_REGEX); }
     public static boolean validateCustomerCID(String customerId){return customerId.matches(CUSTOMER_ID_REGEX); }
+    public static boolean validateEmployeeCID(String employeeId){return employeeId.matches(EMPLOYEE_ID_REGEX); }
+    public static boolean validateSupplierCID(String supplierId){return supplierId.matches(SUPPLIER_ID_REGEX); }
+    public static boolean validateOrderCID(String orderId){return orderId.matches(ORDER_ID_REGEX); }
+    public static boolean validateItemCID(String itemId){return itemId.matches(ITEM_ID_REGEX); }
+    public static boolean validateUserCID(String userId){return userId.matches(USER_ID_REGEX); }
+    public static boolean validateHarvestCID(String harvestId){return harvestId.matches(HARVEST_ID_REGEX); }
+    public static boolean validateAttendenceCID(String attendenceCode){return attendenceCode.matches(ATTENDENCE_ID_REGEX); }
+    public static boolean validateDeliverCID(String deliverId){return deliverId.matches(DELIVER_ID_REGEX); }
     public static boolean validateNumbersAndDecimals(String customerId){return customerId.matches(NUMBERS_DECIMAL); }
     public static boolean validateZIP(String zipCode) {
         return zipCode.matches(ZIP_REGEX);
@@ -61,5 +71,5 @@ public class Regex {
     public static boolean validateAddress(String address) {return address.matches(ADDRESS_REGEX);}
     public static boolean validateFax(String fax) {return fax.matches(FAX_REGEX);}
     public static boolean validateVehicleRentId(String vehicleRentId) {return vehicleRentId.matches(VEHICLE_RENT_ID);}
-    public static boolean validateToolRentId(String toolRentId) {return toolRentId.matches(TOOL_RENT_ID);}
+
 }

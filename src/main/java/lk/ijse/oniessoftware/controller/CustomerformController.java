@@ -15,12 +15,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import lk.ijse.oniessoftware.dto.CustomerDTO;
 import lk.ijse.oniessoftware.dto.EmployeeDTO;
 import lk.ijse.oniessoftware.model.CustomerModel;
 import lk.ijse.oniessoftware.model.EmployeeModel;
+import lk.ijse.oniessoftware.util.Regex;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -37,6 +39,8 @@ public class CustomerformController implements Initializable {
         props.setProperty("user","root");
         props.setProperty("password", "1234");
     }
+
+    public JFXButton btnCustomerClear;
     @FXML
     private JFXButton btnCustomerUpdate;
     @FXML
@@ -149,16 +153,21 @@ public class CustomerformController implements Initializable {
         String custName=txtCustName.getText();
         String contact=txtCustNumber.getText();
         String user=txtUserId.getText();
+        if(Regex.validateCustomerCID(custId)&& Regex.validateMobile(contact)&&Regex.validateUserCID(user)){
         try {
             boolean isSaved = CustomerModel.save(custId,custName,contact,user);
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Customer saved!!!").show();
+                populateCustomerTable();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
 
         }
 
+       }else{
+            new Alert(Alert.AlertType.ERROR, "Invalid Input").show();
+        }
     }
 
     @FXML
@@ -188,20 +197,20 @@ public class CustomerformController implements Initializable {
         String custName=txtCustName.getText();
         String contact=txtCustNumber.getText();
         String userId=txtUserId.getText();
+        if(Regex.validateCustomerCID(custId)&& Regex.validateMobile(contact)&&Regex.validateUserCID(userId)) {
+            var customer = new CustomerDTO(custId, custName, contact, userId);
 
-        var customer = new CustomerDTO(custId,custName,contact,userId);
-
-        try {
-            boolean isUpdated = CustomerModel.update(customer);
-            if (isUpdated) {
-                new Alert(Alert.AlertType.CONFIRMATION, "huree! Customer Updated!").show();
+            try {
+                boolean isUpdated = CustomerModel.update(customer);
+                if (isUpdated) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "huree! Customer Updated!").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, "oops! something happened!").show();
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "oops! something happened!").show();
-            e.printStackTrace();
+
         }
-
-
 
     }
 
@@ -227,4 +236,19 @@ public class CustomerformController implements Initializable {
 
     }
 
+    public void tblCustomerOnMouseCLick(MouseEvent mouseEvent) {
+        CustomerDTO selectedItem = tblCustomer.getSelectionModel().getSelectedItem();
+        if(selectedItem==null)return;
+        txtCustId.setText(selectedItem.getCust_Id());
+        txtUserId.setText(selectedItem.getUser_Id());
+        txtCustNumber.setText(selectedItem.getC_Tp());
+        txtCustName.setText(selectedItem.getName());
+    }
+
+    public void btnCustomerClearOnAction(ActionEvent event) {
+        txtCustId.setText(null);
+        txtCustName.setText(null);
+        txtCustNumber.setText(null);
+        txtUserId.setText(null);
+    }
 }

@@ -6,6 +6,8 @@ import lk.ijse.oniessoftware.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SupplierModel {
     public static ResultSet getAll() throws SQLException {
@@ -25,4 +27,18 @@ public class SupplierModel {
         String sql = "DELETE FROM supplier WHERE sup_id = ?";
         return CrudUtil.execute(sql, supId);
     }
+
+    public static List<String> getIds() throws SQLException {
+        String sql = "SELECT sup_id FROM supplier";
+
+        ResultSet resultSet = CrudUtil.execute(sql);
+        List<String> ids = new ArrayList<>();
+
+        while (resultSet.next()){
+            ids.add(resultSet.getString(1));
+        }
+        return  ids;
+    }
+
+
 }

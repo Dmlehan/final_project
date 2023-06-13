@@ -10,9 +10,11 @@ import lombok.*;
 
 public class DeliverTM {
     private String deliverId;
+    private Double price;
+    private String vehicle;
+    private String date;
     private String employeeId;
     private String orderId;
-    private String vehicle;
-    private Double price;
-    private String date;
+
+
 }

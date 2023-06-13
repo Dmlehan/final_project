@@ -13,6 +13,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import lk.ijse.oniessoftware.db.DBConnection;
@@ -20,10 +21,7 @@ import lk.ijse.oniessoftware.dto.CartDTO;
 import lk.ijse.oniessoftware.dto.CustomerDTO;
 import lk.ijse.oniessoftware.dto.ItemDTO;
 import lk.ijse.oniessoftware.dto.OrdersDTO;
-import lk.ijse.oniessoftware.model.CustomerModel;
-import lk.ijse.oniessoftware.model.ItemsModel;
-import lk.ijse.oniessoftware.model.OrdersModel;
-import lk.ijse.oniessoftware.model.PlaceOrderModel;
+import lk.ijse.oniessoftware.model.*;
 import lk.ijse.oniessoftware.model.tm.PlaceOrderTM;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -70,6 +68,9 @@ public class OrderformController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> colAction;
+
+    @FXML
+    private Label lblNetTotal;
 
     @FXML
     private JFXTextField txtOderSearch;
@@ -155,7 +156,7 @@ public class OrderformController implements Initializable {
 
     private void setItemId() {
         try {
-            List <String> ids = ItemsModel.getIds();
+            List<String> ids = ItemsModel.getIds();
 
             cmbItemId.getItems().addAll(ids);
 
@@ -167,7 +168,7 @@ public class OrderformController implements Initializable {
 
     private void setCustIds() {
         try {
-            List <String> ids = CustomerModel.getIds();
+            List<String> ids = CustomerModel.getIds();
 
             cmbCustId.getItems().addAll(ids);
 
@@ -205,7 +206,7 @@ public class OrderformController implements Initializable {
             }
         }
 
-        PlaceOrderTM tm = new PlaceOrderTM(code, description, unitPrice,qty, total, btnRemove);
+        PlaceOrderTM tm = new PlaceOrderTM(code, description, unitPrice, qty, total, btnRemove);
 
         obList.add(tm);
         tblOrder.setItems(obList);
@@ -226,7 +227,7 @@ public class OrderformController implements Initializable {
                 int index = tblOrder.getSelectionModel().getSelectedIndex();
                 obList.remove(index);
 
-               tblOrder.refresh();
+                tblOrder.refresh();
                 /*calculateNetTotal();*/
             }
 
@@ -236,7 +237,20 @@ public class OrderformController implements Initializable {
 
     @FXML
     void btnOrderDeleteOnAction(ActionEvent event) {
-
+        String empId = txtOrderId.getText();
+        try {
+            boolean isDeleted = EmployeeModel.delete(empId);
+            if (isDeleted){
+                new Alert(Alert.AlertType.CONFIRMATION,"Order deleted").show();
+              //  populateEmployeeTable();
+               // searchFilter();
+            }else {
+                new Alert(Alert.AlertType.WARNING,"Order not deleted").show();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"SQL Error").show();
+        }
     }
 
     @FXML
@@ -278,6 +292,15 @@ public class OrderformController implements Initializable {
 
     }
 
+    private void calculateNetTotal() {
+        double netTotal = 0.0;
+        for (int i = 0; i < tblOrder.getItems().size(); i++) {
+            double total = (double) colTotalPrice.getCellData(i);
+            netTotal += total;
+        }
+        lblNetTotal.setText(String.valueOf(netTotal));
+    }
+
     public void btnOrderAddOnAction(ActionEvent actionEvent) {
         String oId = txtOrderId.getText();
         String cusId = cmbCustId.getValue();
@@ -287,13 +310,13 @@ public class OrderformController implements Initializable {
         for (int i = 0; i < tblOrder.getItems().size(); i++) {
             PlaceOrderTM tm = obList.get(i);
 
-            CartDTO cartDTO = new CartDTO(tm.getItem_id(), tm.getQty(),tm.getUnit_price());
+            CartDTO cartDTO = new CartDTO(tm.getItem_id(),  tm.getUnit_price(),tm.getQty());
             cartDTOList.add(cartDTO);
         }
 
         try {
             boolean isPlaced = PlaceOrderModel.placeOrder(oId, cusId, cartDTOList);
-            if(isPlaced) {
+            if (isPlaced) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Order Not Placed!").show();
@@ -302,21 +325,22 @@ public class OrderformController implements Initializable {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "SQL Error!").show();
         }
-
-
+        calculateNetTotal();
     }
 
-    public void reportOnAction(ActionEvent actionEvent) {
+    private void generateReciept() {
         Thread t1 = new Thread(() -> {
 
-            HashMap<String,Object> hm=new HashMap<>();
-            hm.put("orderId",txtOrderId.getText());
-
+            HashMap<String, Object> hm = new HashMap<>();
+            hm.put("OrderId", txtOrderId.getText());
+            hm.put("Total", lblNetTotal.getText());
 
 
             try {
-                JasperDesign design = JRXmlLoader.load(new File("D:\\Final OOP project\\New folder\\final_project\\src\\main\\java\\lk\\ijse\\oniessoftware\\report\\order.jrxml"));
+                JasperDesign design = JRXmlLoader.load(new File("D:\\Final OOP project\\New folder\\final_project\\src\\main\\java\\lk\\ijse\\oniessoftware\\report\\receipt6.jrxml"));
+                // design.setQuery(Select from Order);
                 JasperReport compileReport = JasperCompileManager.compileReport(design);
+                // compileReport.
                 JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, hm, DBConnection.getInstance().getConnection());
 //            JasperPrintManager.printReport(jasperPrint, true);
 
@@ -327,15 +351,17 @@ public class OrderformController implements Initializable {
         });
 
         t1.start();
+    }
 
-       /* try {
-            JasperDesign design = JRXmlLoader.load(new File("D:\\Final OOP project\\New folder\\final_project\\src\\main\\java\\lk\\ijse\\oniessoftware\\report\\order.jrxml"));
-            JasperReport compileReport = JasperCompileManager.compileReport(design);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, null, DBConnection.getInstance().getConnection());
-//            JasperPrintManager.printReport(jasperPrint, true);
-            JasperViewer.viewReport(jasperPrint,false);
-        } catch (JRException | SQLException e) {
-            e.printStackTrace();*/
+    public void reportOnAction(ActionEvent actionEvent) {
+        generateReciept();
+    }
+
+    public void tblOrderOnMouseCLick(MouseEvent mouseEvent) {
+        PlaceOrderTM selectItem = tblOrder.getSelectionModel().getSelectedItem();
+        txtUnitPrice.setText(selectItem.getItem_id());
+        cmbItemId.getSelectionModel().getSelectedItem();
+
 
     }
 }

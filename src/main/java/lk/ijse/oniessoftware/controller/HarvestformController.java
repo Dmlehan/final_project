@@ -15,10 +15,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import lk.ijse.oniessoftware.dto.EmployeeDTO;
 import lk.ijse.oniessoftware.dto.HarvestDTO;
 import lk.ijse.oniessoftware.model.EmployeeModel;
 import lk.ijse.oniessoftware.model.HarvestModel;
+import lk.ijse.oniessoftware.util.Regex;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -131,6 +133,7 @@ public class HarvestformController implements Initializable {
             String harvestCode = txtHarvestCode.getText();
             String harvestType = txtHarvestType.getText();
             Double quantity = Double.parseDouble(txtHarvestQuantity.getText());
+            if(Regex.validateHarvestCID(harvestCode)){
             try {
 
                 boolean isSaved = HarvestModel.save(harvestCode,harvestType,quantity);
@@ -139,6 +142,9 @@ public class HarvestformController implements Initializable {
                 }
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+             }
+            }else{ new Alert(Alert.AlertType.ERROR,"Invalid Input").show();
+
             }
         }
 
@@ -181,26 +187,42 @@ public class HarvestformController implements Initializable {
         }
 
         @FXML
-        void btnHarvestUpdateOnAction(ActionEvent event) {
+        void btnHarvestUpdateOnAction(ActionEvent event){
+
             String harvestCode = txtHarvestCode.getText();
             String harvestType = txtHarvestType.getText();
             Double quantity = Double.parseDouble(txtHarvestQuantity.getText());
-
-            var harvest = new HarvestDTO(harvestCode,harvestType,quantity);
-
-            try {
-                boolean isUpdated = HarvestModel.update(harvest);
-                if (isUpdated) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "huree! Harvest Updated!").show();
+            if(Regex.validateHarvestCID(harvestCode)) {
+              var harvest = new HarvestDTO(harvestCode,harvestType,quantity);
+                try {
+                    boolean isUpdated = HarvestModel.update(harvest);
+                    if (isUpdated) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "huree! Harvest Updated!").show();
+                    }
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.ERROR, "oops! something happened!").show();
+                    e.printStackTrace();
                 }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, "oops! something happened!").show();
-                e.printStackTrace();
-            }
+            }else {
+                    new Alert(Alert.AlertType.ERROR, "Invalid Input").show();
+                }
 
         }
 
 
+    public void tblHarvestOnMouseCLick(MouseEvent mouseEvent) {
+        HarvestDTO selectItem=tableHarvest.getSelectionModel().getSelectedItem();
+        if(selectItem==null) return;
+        txtHarvestCode.setText(selectItem.getHarvestId());
+        txtHarvestType.setText(selectItem.getHarvestType());
+        txtHarvestQuantity.setText(String.valueOf(selectItem.getHarvestQuantity()));
+    }
+
+    public void btnHarvestClearOnAction(ActionEvent event) {
+        txtHarvestCode.setText(null);
+        txtHarvestType.setText(null);
+        txtHarvestQuantity.setText(null);
+    }
 }
 
 

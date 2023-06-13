@@ -1,0 +1,49 @@
+.BackGround {
+    /*-fx-background-color: linear-gradient(#ffffff, #cc0707);*/
+    -fx-background-color: linear-gradient(to right, #140b7a, #1f12cb, #3a2cf3, #3a2cf3);
+// -fx-background-color: linear-gradient(to right,  #A31ACB, #A31ACB, #A31ACB, #A31ACB, #A31ACB, #ffffff);
+}
+
+.login-btn{
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #1e10d7;
+    -fx-background-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: #0c0c0c;
+}
+
+.dashBord-btn{
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 10;
+    -fx-font-size: 24;
+    -fx-font-style: Times New Roman;
+    -fx-font: Bolt;
+    -fx-cursor: Hand;
+}
+.title{
+    -fx-text-fill: #ffffff, #bbb2b2, #8d8080, #6c6060;
+    -fx-font-style: Serif;
+    -fx-font-size: 30;
+    -fx-font: Bold;
+}
+.pane{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 30;
+
+}
+.lebal {
+    -fx-background-radius: 10;
+    -fx-font-size: 32;
+    -fx-alignment: CENTER;
+}
+.newBtn{
+    -fx-font-size: 22;
+    -fx-cursor: HAND;
+    -fx-alignment: CENTER;
+    -fx-background-radius: 20;
+    -fx-fill-height: 40;
+    -fx-fill-width: 270;
+}
+.fgh{
+    -fx-background-color:#3a2cf3;
+}

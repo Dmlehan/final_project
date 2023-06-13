@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="769.0" prefWidth="1527.0" style="-fx-background-color: #d1d8e0;" stylesheets="@../../../../../../320/oniesSoftware/src/main/resources/style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.oniessoftware.controller.WelcomeController">
+   <children>
+      <ImageView fitHeight="769.0" fitWidth="1527.0">
+         <image>
+            <Image url="@../img/welcome.jpg" />
+         </image>
+      </ImageView>
+      <ProgressBar fx:id="progressBar" layoutX="530.0" layoutY="612.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="500.0" progress="0.29" />
+      <ImageView fitHeight="243.0" fitWidth="604.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/IMG-20230323-WA0012-removebg-preview%20(1).png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1550.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.oniessoftware.controller.DashboardController">
+   <children>
+      <AnchorPane layoutY="-3.0" prefHeight="800.0" prefWidth="280.0" style="-fx-background-color: #DDE9F8;">
+         <children>
+            <ImageView fitHeight="800.0" fitWidth="301.0" layoutY="2.0" opacity="0.24" styleClass="dashBord-btn">
+               <image>
+                  <Image url="@../img/IMG-20230323-WA0004.jpg" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btnDashboard" layoutX="25.0" layoutY="163.0" onAction="#dashboardBtnOnAction" prefHeight="61.0" prefWidth="252.0" text="Dashboard" textFill="#1a1919">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons8-dashboard-layout-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnCustomer" layoutX="15.0" layoutY="231.0" onAction="#customerBtnOnAction" prefHeight="61.0" prefWidth="252.0" text="Customer" textFill="#1a1919">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons8-customer-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnEmployee" layoutX="15.0" layoutY="299.0" onAction="#btnEmployeeOnAction" prefHeight="61.0" prefWidth="252.0" text="Employee" textFill="#1a1919">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons8-manager-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnItems" layoutX="-6.0" layoutY="439.0" onAction="#btnItemsOnAction" prefHeight="61.0" prefWidth="252.0" text="Items" textFill="#1a1919">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons8-spices-64%20(1).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnSupplier" layoutX="7.0" layoutY="367.0" onAction="#btnSupplierOnAction" prefHeight="61.0" prefWidth="252.0" text="Suplliers" textFill="#1a1919">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons8-employee-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnHarvest" layoutX="7.0" layoutY="507.0" onAction="#btnHarvestOnAction" prefHeight="61.0" prefWidth="252.0" text="Harvest" textFill="#1a1919">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons8-harvest-64%20(1).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnOrders" layoutY="585.0" onAction="#btnOrdersOnAction" prefHeight="61.0" prefWidth="252.0" text="Orders" textFill="#1a1919">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons8-buy-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnDeliver" layoutX="7.0" layoutY="662.0" onAction="#btnDeliverOnAction" prefHeight="61.0" prefWidth="252.0" text="Deliver" textFill="#1a1919">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons8-truck-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnLogout" layoutX="52.0" layoutY="739.0" onAction="#btnLogoutOnAction" styleClass="edgez-button" text="Logout">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="37.0" rotate="180.0">
+                     <image>
+                        <Image url="@../img/icons8-logout-rounded-64.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <Label layoutX="35.0" layoutY="14.0" prefHeight="102.0" prefWidth="242.0" style="-fx-background-color: lightblue;" styleClass="edgez-button" stylesheets="@../style/style.css" text=" " />
+            <ImageView fitHeight="83.0" fitWidth="187.0" layoutX="63.0" layoutY="23.0">
+               <image>
+                  <Image url="@../img/IMG-20230323-WA0012-removebg-preview%20(1).png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="pane" layoutX="301.0" layoutY="2.0" prefHeight="800.0" prefWidth="1245.0" styleClass="actionIcon">
+         <children>
+            <Label layoutX="304.0" layoutY="119.0" prefHeight="68.0" prefWidth="116.0" text="10" />
+            <Label fx:id="lblDate" layoutX="517.0" layoutY="119.0" prefHeight="68.0" prefWidth="116.0" text="Date" />
+            <Label layoutX="90.0" layoutY="119.0" prefHeight="68.0" prefWidth="143.0" text="Employee On Work:" />
+            <Label fx:id="txtTime" layoutX="701.0" layoutY="119.0" prefHeight="68.0" prefWidth="116.0" text="Time" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

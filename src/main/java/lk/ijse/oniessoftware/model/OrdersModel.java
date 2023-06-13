@@ -16,7 +16,7 @@ public class OrdersModel {
         ResultSet rs = CrudUtil.execute(query);
         return rs;
     }
-    public static boolean save(String orderId, String custId,String date) throws SQLException {
+    /*public static boolean save(String orderId, String custId,String date) throws SQLException {
         String sql = "INSERT INTO employee(orders_Id,cust_Id,dates) VALUES(?, ?, ?, ?, ?)";
         return CrudUtil.execute(sql,orderId,custId,date);
     }
@@ -27,7 +27,7 @@ public class OrdersModel {
     public static boolean delete(String orderId) throws SQLException {
         String sql = "DELETE FROM orders WHERE orders_Id = ?";
         return CrudUtil.execute(sql, orderId);
-    }
+    }*/
 
     public static boolean add(String oId, String cusId, LocalDate now) throws SQLException {
         String sql = "INSERT INTO orders(orders_Id,dates,cust_Id) VALUES(?,?,?)";
@@ -48,11 +48,11 @@ public class OrdersModel {
 
     public static String splitOrderId(String currentOrderId) {
         if(currentOrderId != null) {
-            String[] strings = currentOrderId.split("O0");
+            String[] strings = currentOrderId.split("O");
             int id = Integer.parseInt(strings[1]);
             id++;
 
-            return "O0"+id;
+            return String.format("O%03d",id);
         }
         return "O001";
     }

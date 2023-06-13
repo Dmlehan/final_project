@@ -8,7 +8,9 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -16,9 +18,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lk.ijse.oniessoftware.dto.SupplierDTO;
 import lk.ijse.oniessoftware.model.SupplierModel;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -190,4 +194,32 @@ public class SupplierformController implements Initializable {
 
 
 
+    public void tblSupplyOnMouseCLick(javafx.scene.input.MouseEvent mouseEvent) {
+        SupplierDTO selectItem=tableSupplier.getSelectionModel().getSelectedItem();
+        if(selectItem==null) return;
+        txtSupplierId.setText(selectItem.getSupplierId());
+        txtSupplierType.setText(selectItem.getTypes());
+        txtSupplierNumber.setText(selectItem.getContactNumber());
+        txtSuppliertName.setText(selectItem.getSupplierName());
+
+    }
+
+    public void btnSupplierClearOnAction(ActionEvent event) {
+        txtSupplierId.setText(null);
+        txtSupplierType.setText(null);
+        txtSupplierNumber.setText(null);
+        txtSuppliertName.setText(null);
+    }
+
+    public void btnSupplyOnAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Loginformcontroller.class.getResource("/view/view/supplyItemsform.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("");
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+
+    }
 }

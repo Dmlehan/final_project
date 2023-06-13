@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane opacity="0.61" prefHeight="800.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.oniessoftware.controller.HomeFormController">
+   <children>
+      <Pane layoutX="-7.0" prefHeight="102.0" prefWidth="1274.0">
+         <children>
+            <Label layoutX="74.0" layoutY="14.0" prefHeight="54.0" prefWidth="223.0" styleClass="column-header" text="Dash Board" textFill="#27218e">
+               <font>
+                  <Font name="Berlin Sans FB" size="37.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../../../../../../320/oniesSoftware/src/main/resources/style/style.css" />
+                  <URL value="@../../../../../../320/oniesSoftware/src/main/resources/style/newSecond.css" />
+               </stylesheets></Label>
+            <Label layoutX="1002.0" layoutY="17.0" prefHeight="102.0" prefWidth="213.0" style="-fx-background-color: lightblue;" styleClass="edgez-button" stylesheets="@../style/style.css" text=" " />
+            <Label fx:id="lblTime" layoutX="1057.0" layoutY="14.0" prefHeight="54.0" prefWidth="140.0" text="09:04">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblDate" layoutX="1037.0" layoutY="51.0" prefHeight="68.0" prefWidth="160.0" text="2023.04.07">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="102.0" fitWidth="327.0" layoutX="442.0" layoutY="5.0">
+               <image>
+                  <Image url="@../img/IMG-20230323-WA0012-removebg-preview%20(1).png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="33.0" layoutY="485.0" prefHeight="276.0" prefWidth="1024.0" style="-fx-border-radius: 100; -fx-background-color: #8DD4F3;">
+         <children>
+            <BarChart fx:id="barchart" layoutX="32.0" layoutY="3.0" prefHeight="269.0" prefWidth="958.0">
+              <xAxis>
+                <CategoryAxis prefHeight="0.0" prefWidth="545.0" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+               <opaqueInsets>
+                  <Insets top="5.0" />
+               </opaqueInsets>
+            </BarChart>
+         </children>
+      </Pane>
+      <ImageView fitHeight="381.0" fitWidth="650.0" layoutX="610.0" layoutY="104.0">
+         <image>
+            <Image url="@../img/Farmers%20market-rafiki.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="269.0" fitWidth="175.0" layoutX="1085.0" layoutY="494.0" opacity="0.66">
+         <image>
+            <Image url="@../img/IMG-20230323-WAonies.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="342.0" fitWidth="624.0" layoutX="49.0" layoutY="118.0">
+         <image>
+            <Image url="@../img/Farmer-rafiki.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -9,12 +9,12 @@ import lombok.*;
 @ToString
 
 public class DeliverDTO {
-  private  String deliverId;
-  private  String employeeId;
-  private  String orderId;
-  private  String vehicle;
-  private  String date;
-  private  String price;
+  private String deliverId;
+  private Double price;
+  private String vehicle;
+  private String date;
+  private String employeeId;
+  private String orderId;
 
 
 }

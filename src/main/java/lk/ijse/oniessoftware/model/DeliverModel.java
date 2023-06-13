@@ -1,6 +1,7 @@
 package lk.ijse.oniessoftware.model;
 
 import lk.ijse.oniessoftware.dto.DeliverDTO;
+import lk.ijse.oniessoftware.dto.EmployeeDTO;
 import lk.ijse.oniessoftware.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -8,7 +9,7 @@ import java.sql.SQLException;
 
 public class DeliverModel {
         public static ResultSet getAll() throws SQLException {
-            String query = "SELECT deliver_id,emp_Id,orders_Id,vehicle,price_of_km,date from deliver";
+            String query = "SELECT * FROM deliver";
             ResultSet rs = CrudUtil.execute(query);
             return rs;
         }
@@ -24,6 +25,24 @@ public class DeliverModel {
             String sql = "DELETE FROM deliver WHERE orders_Id = ?";
             return CrudUtil.execute(sql, orders_Id);
         }
+
+    public static DeliverDTO search(String deliverId) throws SQLException {
+
+        String sql = "SELECT * FROM deliver WHERE deliver_id = ?";
+        ResultSet resultSet = CrudUtil.execute(sql, deliverId);
+
+        if (resultSet.next()) {
+            String deliver_Id = resultSet.getString(1);
+            Double price = resultSet.getDouble(2);
+            String vechicle= resultSet.getString(3);
+            String date = resultSet.getString(4);
+            String emp_Id = resultSet.getString(5);
+            String orders_Id = resultSet.getString(6);
+
+            return new DeliverDTO(deliver_Id,price,vechicle,date,emp_Id,orders_Id);
+        }
+        return null;
+    }
     }
 
 

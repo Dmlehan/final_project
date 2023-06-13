@@ -25,8 +25,8 @@ public class OrderDetailModel {
         PreparedStatement pstm = con.prepareStatement(sql);
         pstm.setString(1, oId);
         pstm.setString(2, dto.getItem_id());
-        pstm.setInt(3, dto.getQty());
-        pstm.setDouble(4, dto.getUnit_price());
+        pstm.setDouble(3, dto.getUnit_price());
+        pstm.setInt(4, dto.getQty());
 
         return pstm.executeUpdate() > 0;
 

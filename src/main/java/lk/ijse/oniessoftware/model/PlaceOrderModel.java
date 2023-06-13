@@ -35,6 +35,7 @@ public class PlaceOrderModel {
             return false;
         } finally {
             System.out.println("finally");
+            con.rollback();
             con.setAutoCommit(true);
         }
     }

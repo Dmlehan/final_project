@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -19,8 +18,9 @@ import java.util.ResourceBundle;
 public class DashboardController implements Initializable {
 
     public JFXButton btnSupplier;
-    public Label lblDate;
-    public Label txtTime;
+    public static String comDate;
+
+
     @FXML
     private JFXButton btnDashboard;
 
@@ -49,7 +49,7 @@ public class DashboardController implements Initializable {
     @FXML
 
     void customerBtnOnAction(ActionEvent event) throws IOException {
-        URL resource = this.getClass().getResource("/view/customersform.fxml");
+        URL resource = this.getClass().getResource("/view/view/customersform.fxml");
 
         assert resource != null;
 
@@ -60,45 +60,45 @@ public class DashboardController implements Initializable {
     @FXML
     void dashboardBtnOnAction(ActionEvent actionEvent) throws IOException {
         pane.getChildren().clear();
-        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/homeForm.fxml.")));
+        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/view/homeForm.fxml.")));
     }
     @FXML
     void btnItemsOnAction(ActionEvent actionEvent) throws IOException {
         pane.getChildren().clear();
-        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/itemsform.fxml")));
+        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/view/itemsform.fxml")));
     }
     @FXML
     void btnEmployeeOnAction(ActionEvent event) throws IOException {
         pane.getChildren().clear();
-        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/Employeeform.fxml")));
+        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/view/Employeeform.fxml")));
     }
 
     @FXML
     void btnHarvestOnAction(ActionEvent event) throws IOException {
         pane.getChildren().clear();
-        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/harvestform.fxml")));
+        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/view/harvestform.fxml")));
     }
     @FXML
     void btnOrdersOnAction(ActionEvent event) throws IOException {
         pane.getChildren().clear();
-        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/Ordersform.fxml")));
+        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/view/Ordersform.fxml")));
     }
 
     @FXML
     void btnSupplierOnAction(ActionEvent event) throws IOException {
         pane.getChildren().clear();
-        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/supplierform.fxml")));
+        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/view/supplierform.fxml")));
     }
 
     @FXML
     void btnDeliverOnAction(ActionEvent event) throws IOException{
         pane.getChildren().clear();
-        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/Deliverform.fxml")));
+        pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/view/Deliverform.fxml")));
     }
 
     @FXML
     void btnLogoutOnAction(ActionEvent event) throws IOException {
-        Parent loginParent = FXMLLoader.load(getClass().getResource("/view/loginform.fxml"));
+        Parent loginParent = FXMLLoader.load(getClass().getResource("/view/view/loginform.fxml"));
         Scene loginScene = new Scene(loginParent);
         Stage loginStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         loginStage.setResizable(true);
@@ -108,12 +108,11 @@ public class DashboardController implements Initializable {
 
     }
 
-
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       // initClock();
+
         pane.getChildren().clear();
         try {
-            pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/homeForm.fxml")));
+            pane.getChildren().add(FXMLLoader.load(getClass().getResource("/view/view/homeForm.fxml")));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.io.IOException;
 
 public class WelcomeController implements Initializable {
     public ProgressBar progressBar;
@@ -32,7 +31,7 @@ public class WelcomeController implements Initializable {
         progressBar.progressProperty().bind(task.progressProperty());
         task.setOnSucceeded(event -> {
             try {
-                Parent loginParent = FXMLLoader.load(getClass().getResource("/view/loginform.fxml"));
+                Parent loginParent = FXMLLoader.load(getClass().getResource("/view/view/loginform.fxml"));
                 Scene loginScene = new Scene(loginParent);
                 Stage loginStage = new Stage();
                 loginStage.setTitle("Login");

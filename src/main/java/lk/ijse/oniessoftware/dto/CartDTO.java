@@ -10,8 +10,8 @@ import lombok.*;
 
 public class CartDTO {
     private String item_id;
-    private Integer qty;
     private Double unit_price;
+    private Integer qty;
 
 
 }
